@@ -20,15 +20,14 @@ public class GetAllCategoriesEndpoint : IEndPoint
             .Produces<PagedResponse<List<Category>?>>();
 
     private static async Task<IResult> HandleAsync(
-        //ClaimsPrincipal user,
+        ClaimsPrincipal user,
         ICategoryHandler handler,
         [FromQuery] int pageNumber = Configuration.DefaultPageNumber,
         [FromQuery] int pageSize = Configuration.DefaultPageSize)
     {
         var request = new GetAllCategoriesRequest
         {
-            //UserId = user.Identity?.Name ?? string.Empty,
-            UserId = "victor@victorb",
+            UserId = user.Identity?.Name ?? string.Empty,
             PageNumber = pageNumber,
             PageSize = pageSize,
         };

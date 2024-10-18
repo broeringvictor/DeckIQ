@@ -30,5 +30,5 @@ public class CreateFlashCardRequest : Request
     
     public long CategoryId { get; set; }
     
-    public string UserId { get; set; } = string.Empty;
+    public new string UserId { get; set; } = string.Empty;
 }

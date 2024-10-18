@@ -18,13 +18,13 @@ public class UpdateCategoryEndpoint : IEndPoint
             .Produces<Response<Category?>>();
 
     private static async Task<IResult> HandleAsync(
-        //ClaimsPrincipal user,
+        ClaimsPrincipal user,
         ICategoryHandler handler,
         UpdateCategoryRequest request,
         long id)
     {
-        request.UserId = "victor@victorb";
-        //request.UserId = user.Identity?.Name ?? string.Empty;
+        
+        request.UserId = user.Identity?.Name ?? string.Empty;
         request.Id = id;
         
         var result = await handler.UpdateAsync(request);

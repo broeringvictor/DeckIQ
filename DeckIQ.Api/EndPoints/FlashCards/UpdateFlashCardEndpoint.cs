@@ -1,4 +1,5 @@
-﻿using DeckIQ.Api.Common.Api;
+﻿using System.Security.Claims;
+using DeckIQ.Api.Common.Api;
 using DeckIQ.Core.Handlers;
 using DeckIQ.Core.Models;
 using DeckIQ.Core.Requests.FlashCards;
@@ -17,14 +18,14 @@ public class UpdateFlashCardEndpoint : IEndPoint
             .Produces<Response<FlashCard?>>(); // Atualize aqui para FlashCard
 
     private static async Task<IResult> HandleAsync(
-        //ClaimsPrincipal user,
+        ClaimsPrincipal user,
         IFlashCardHandler handler, // Alterado para IFlashCardHandler
         UpdateFlashCardRequest request, // Alterado para UpdateFlashCardRequest
         long id)
     {
         request.UserId = "victor@victorb";
-        //request.UserId = user.Identity?.Name ?? string.Empty;
-        request.Id = (int)id;
+        request.UserId = user.Identity?.Name ?? string.Empty;
+        
 
         var result = await handler.UpdateAsync(request); // Usando o método UpdateAsync para FlashCard
         return result.IsSuccess

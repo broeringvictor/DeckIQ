@@ -2,7 +2,7 @@
 using DeckIQ.Api.Common.Api;
 using DeckIQ.Core.Handlers;
 using DeckIQ.Core.Models;
-using DeckIQ.Core.Requests.Categories;
+
 using DeckIQ.Core.Requests.FlashCards;
 using DeckIQ.Core.Responses;
 
@@ -12,19 +12,19 @@ public class CreateFlashCardEndpoint : IEndPoint
 {
     public static void Map(IEndpointRouteBuilder app)
         => app.MapPost("/", HandleAsync)
-            .WithName("Categories: Create")
+            .WithName("FlashCards: Create")
             .WithSummary("Cria um novo flash card")
             .WithDescription("Cria um novo Flash card")
             .WithOrder(1)
             .Produces<Response<FlashCard?>>();
 
     private static async Task<IResult> HandleAsync(
-        //ClaimsPrincipal user,
+        ClaimsPrincipal user,
         IFlashCardHandler handler,
         CreateFlashCardRequest request)
     {
-        //request.UserId = user.Identity?.Name ?? string.Empty;
-        request.UserId = "victor@victorb";
+        request.UserId = user.Identity?.Name ?? string.Empty;
+        
         var result = await handler.CreateAsync(request);
         return result.IsSuccess
             ? TypedResults.Created($"/{result.Data?.Id}", result)

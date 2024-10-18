@@ -8,6 +8,9 @@ C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\DeckIQ.Api.pdb
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Azure.Core.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Azure.Identity.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Humanizer.dll
+C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -24,6 +27,8 @@ C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memor
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
@@ -129,6 +134,7 @@ C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\DeckIQ.Api.AssemblyInfo.cs
 C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\DeckIQ.Api.csproj.CoreCompileInputs.cache
 C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\DeckIQ.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\DeckIQ.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\DeckIQ.Api.sourcelink.json
 C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\staticwebassets.build.json
 C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\staticwebassets.development.json
 C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\staticwebassets\msbuild.DeckIQ.Api.Microsoft.AspNetCore.StaticWebAssets.props

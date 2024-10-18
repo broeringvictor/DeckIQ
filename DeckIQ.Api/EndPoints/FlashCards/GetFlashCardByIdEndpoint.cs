@@ -18,14 +18,13 @@ public class GetFlashCardByIdEndpoint : IEndPoint
             .Produces<Response<FlashCard?>>();
 
     private static async Task<IResult> HandleAsync(
-        //ClaimsPrincipal user,
+        ClaimsPrincipal user,
         IFlashCardHandler handler,
         long id)
     {
         var request = new GetFlashCardByIdRequest
         {
-            //UserId = user.Identity?.Name ?? string.Empty,
-            UserId = "victor@victorb",
+            UserId = user.Identity?.Name ?? string.Empty,
             Id = id
         };
 

@@ -18,14 +18,14 @@ public class DeleteCategoryEndpoint : IEndPoint
             .Produces<Response<Category?>>();
 
     private static async Task<IResult> HandleAsync(
-        //ClaimsPrincipal user,
+        ClaimsPrincipal user,
         ICategoryHandler handler,
         long id)
     {
         var request = new DeleteCategoryRequest
         {
-            UserId = "victor@victorb",
-            //UserId = user.Identity?.Name ?? string.Empty,
+            
+            UserId = user.Identity?.Name ?? string.Empty,
             Id = id
         };
 

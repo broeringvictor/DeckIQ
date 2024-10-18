@@ -18,14 +18,13 @@ public class GetCategoryByIdEndpoint : IEndPoint
             .Produces<Response<Category?>>();
 
     private static async Task<IResult> HandleAsync(
-        //ClaimsPrincipal user,
+        ClaimsPrincipal user,
         ICategoryHandler handler,
         long id)
     {
         var request = new GetCategoryByIdRequest
         {
-            //UserId = user.Identity?.Name ?? string.Empty,
-            UserId = "victor@victorb",
+            UserId = user.Identity?.Name ?? string.Empty,
             Id = id
         };
 

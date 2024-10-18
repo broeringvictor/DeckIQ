@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DeckIQ.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a87de517b800a6ce71791f7ede3d5b22a761633")]
 [assembly: System.Reflection.AssemblyProductAttribute("DeckIQ.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DeckIQ.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

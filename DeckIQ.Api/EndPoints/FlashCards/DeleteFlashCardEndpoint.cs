@@ -1,4 +1,5 @@
-﻿using DeckIQ.Api.Common.Api;
+﻿using System.Security.Claims;
+using DeckIQ.Api.Common.Api;
 using DeckIQ.Core.Handlers;
 using DeckIQ.Core.Models;
 using DeckIQ.Core.Requests.Categories;
@@ -11,21 +12,21 @@ public class DeleteFlashCardEndpoint : IEndPoint
 {
     public static void Map(IEndpointRouteBuilder app)
         => app.MapDelete("/{id}", HandleAsync)
-            .WithName("Categories: Delete")
+            .WithName("FlashCards: Delete")
             .WithSummary("Exclui um Flash Card")
             .WithDescription("Exclui uma Flash Card")
             .WithOrder(3)
             .Produces<Response<FlashCard?>>();
 
     private static async Task<IResult> HandleAsync(
-        //ClaimsPrincipal user,
+        ClaimsPrincipal user,
         IFlashCardHandler handler,
         long id)
     {
         var request = new DeleteFlashCardRequest()
         {
-            UserId = "victor@victorb",
-            //UserId = user.Identity?.Name ?? string.Empty,
+            
+            UserId = user.Identity?.Name ?? string.Empty,
             Id = id
         };
 

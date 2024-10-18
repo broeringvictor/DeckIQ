@@ -1,48 +1,84 @@
+using System.Security.Claims;
 using DeckIQ.Api.Data;
 using DeckIQ.Api.EndPoints;
 using DeckIQ.Api.Handlers;
+using DeckIQ.Api.Models;
 using DeckIQ.Core.Handlers;
-using DeckIQ.Core.Models;
-using DeckIQ.Core.Requests.Categories;
-using DeckIQ.Core.Responses;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace DeckIQ.Api;
+var builder = WebApplication.CreateBuilder(args);
 
-internal class Program
-{
-    public static void Main(string[] args)
+// Adicione serviços ao contêiner
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(x => { x.CustomSchemaIds(n => n.FullName); });
+
+var cnnString = builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
+builder.Services.AddDbContext<AppDbContext>(x => { x.UseSqlServer(cnnString); });
+
+builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
+    .AddIdentityCookies();
+
+builder.Services.AddAuthorization();
+
+builder.Services
+    .AddIdentityCore<User>()
+    .AddRoles<IdentityRole<long>>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddApiEndpoints();
+
+builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
+builder.Services.AddTransient<IFlashCardHandler, FlashCardHandler>();
+
+// Crie o aplicativo após adicionar todos os serviços
+var app = builder.Build();
+
+// Configure o pipeline de requisição HTTP
+app.UseRouting(); // Deve vir antes de UseAuthorization
+app.UseAuthentication(); // Deve vir antes de UseAuthorization
+app.UseAuthorization(); // Deve estar entre UseRouting e UseEndpoints
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.MapEndpoints();
+
+app.MapGroup("v1/identity")
+    .WithTags("Identity")
+    .MapIdentityApi<User>();
+
+app.MapGroup("v1/identity")
+    .WithTags("Identity")
+    .MapPost("/logout", async (SignInManager<User> signInManager) =>
     {
-        var builder = WebApplication.CreateBuilder(args);
+        await signInManager.SignOutAsync();
+        return Results.Ok();
+    })
+    .RequireAuthorization();
 
-        builder.Services.AddEndpointsApiExplorer();
+app.MapGroup("v1/identity")
+    .WithTags("Identity")
+    .MapGet(pattern: "/roles", handler: (ClaimsPrincipal user) =>
+    {
+        if (!user.Identity!.IsAuthenticated || user.Identity is null)
+            return Results.Unauthorized();
 
-        builder.Services.AddSwaggerGen(x =>
-        {
-            x.CustomSchemaIds(n => n.FullName);
-        });
+        var identity = (ClaimsIdentity)user.Identity;
+        var roles = identity.FindAll(identity.RoleClaimType)
+            .Select(c => new
+            {
+                c.Issuer,
+                c.OriginalIssuer,
+                c.Type,
+                c.Value,
+                c.ValueType
+            });
 
-        var cnnString = builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
-        builder.Services.AddDbContext<AppDbContext>(x =>
-        {
-            x.UseSqlServer(cnnString);
-        });
+        return Results.Json(roles);
+    })
+    .RequireAuthorization();
 
-        builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
-
-        var app = builder.Build();
-        app.UseSwagger();
-        app.UseSwaggerUI();
-
-        app.UseRouting();
-        
-        app.MapEndpoints();
-        
-        
-        app.Run();
-    }
-}
+app.Run();
 
 // endpoint → url de acesso 
 // Convenção de Mercado

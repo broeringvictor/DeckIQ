@@ -1,9 +1,7 @@
-﻿using System.Runtime.Intrinsics.X86;
-using DeckIQ.Api.Data;
+﻿using DeckIQ.Api.Data;
 using DeckIQ.Core.Common.Extensions;
 using DeckIQ.Core.Handlers;
 using DeckIQ.Core.Models;
-using DeckIQ.Core.Requests.Categories;
 using DeckIQ.Core.Requests.FlashCards;
 using DeckIQ.Core.Responses;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +32,7 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
             return new Response<FlashCard?>(flashCard, 201, "Flash Card criada.");
 
         }
-        catch (Exception e)
+        catch
         {
             return new Response<FlashCard?>(null, 500, "Não foi possível criar o Flash Card.");
         }
@@ -61,7 +59,7 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
                 return new Response<FlashCard?>(flashCard, 201, "Flash Card criada.");
                 
             }
-            catch (Exception e)
+            catch
             {
                 return new Response<FlashCard?>(null, 500, "Não foi possível deletar o Flash Card.");
             }
@@ -94,7 +92,7 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
 
 
         }
-        catch (Exception e)
+        catch
         {
             return new Response<FlashCard?>(null, 500, "Não foi possível editar o Flash Card.");
         }
@@ -125,7 +123,7 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
             request.StartDate ??= DateTime.Now.GetFristDay();
             request.EndDate = DateTime.Now.GetLastDay();
         }
-        catch (Exception e)
+        catch
         {
             return new PagedResponse<List<FlashCard?>?>(null, 500, "Não foi possível determinar a data de inicio ou final.");
         }

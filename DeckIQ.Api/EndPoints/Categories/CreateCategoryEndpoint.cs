@@ -18,12 +18,11 @@ public class CreateCategoryEndpoint : IEndPoint
             .Produces<Response<Category?>>();
 
     private static async Task<IResult> HandleAsync(
-        //ClaimsPrincipal user,
+        ClaimsPrincipal user,
         ICategoryHandler handler,
         CreateCategoryRequest request)
     {
-        //request.UserId = user.Identity?.Name ?? string.Empty;
-        //request.UserId = "victor@victorb";
+        request.UserId = user.Identity?.Name ?? string.Empty;
         var result = await handler.CreateAsync(request);
         return result.IsSuccess
             ? TypedResults.Created($"/{result.Data?.Id}", result)
