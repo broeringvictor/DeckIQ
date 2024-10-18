@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Responses\Response\**" />
+    <Compile Remove="Requests\FlashCards\DeleteFlashCardRequest\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Responses\Response\**" />
+    <EmbeddedResource Remove="Requests\FlashCards\DeleteFlashCardRequest\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Responses\Response\**" />
+    <None Remove="Requests\FlashCards\DeleteFlashCardRequest\**" />
+  </ItemGroup>
+
+</Project>

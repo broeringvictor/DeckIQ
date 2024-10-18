@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "U4MXbwd+PoADkEhfEEq3Zw5py9tF4lv6b49sGDUGEMk=",
+  "Source": "DeckIQ.Api",
+  "BasePath": "_content/DeckIQ.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

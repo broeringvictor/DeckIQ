@@ -1,0 +1,11 @@
+C:\dev\dev\DeckIQ\DeckIQ.Core\bin\Debug\net8.0\DeckIQ.Core.deps.json
+C:\dev\dev\DeckIQ\DeckIQ.Core\bin\Debug\net8.0\DeckIQ.Core.dll
+C:\dev\dev\DeckIQ\DeckIQ.Core\bin\Debug\net8.0\DeckIQ.Core.pdb
+C:\dev\dev\DeckIQ\DeckIQ.Core\obj\Debug\net8.0\DeckIQ.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\dev\DeckIQ\DeckIQ.Core\obj\Debug\net8.0\DeckIQ.Core.AssemblyInfoInputs.cache
+C:\dev\dev\DeckIQ\DeckIQ.Core\obj\Debug\net8.0\DeckIQ.Core.AssemblyInfo.cs
+C:\dev\dev\DeckIQ\DeckIQ.Core\obj\Debug\net8.0\DeckIQ.Core.csproj.CoreCompileInputs.cache
+C:\dev\dev\DeckIQ\DeckIQ.Core\obj\Debug\net8.0\DeckIQ.Core.dll
+C:\dev\dev\DeckIQ\DeckIQ.Core\obj\Debug\net8.0\refint\DeckIQ.Core.dll
+C:\dev\dev\DeckIQ\DeckIQ.Core\obj\Debug\net8.0\DeckIQ.Core.pdb
+C:\dev\dev\DeckIQ\DeckIQ.Core\obj\Debug\net8.0\ref\DeckIQ.Core.dll

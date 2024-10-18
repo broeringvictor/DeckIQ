@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckIQ.Core", "DeckIQ.Core\DeckIQ.Core.csproj", "{741FBB79-0B7A-43AF-8EB3-C9EF5F91507A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckIQ.Api", "DeckIQ.Api\DeckIQ.Api.csproj", "{CCD75AC3-DA5B-45B9-BDB0-201E0CCB94A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckIQ.Documents", "DeckIQ.Documents\DeckIQ.Documents.csproj", "{78B14770-81FE-40A0-AD88-BB1359EFE47D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{741FBB79-0B7A-43AF-8EB3-C9EF5F91507A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{741FBB79-0B7A-43AF-8EB3-C9EF5F91507A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{741FBB79-0B7A-43AF-8EB3-C9EF5F91507A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{741FBB79-0B7A-43AF-8EB3-C9EF5F91507A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCD75AC3-DA5B-45B9-BDB0-201E0CCB94A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCD75AC3-DA5B-45B9-BDB0-201E0CCB94A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCD75AC3-DA5B-45B9-BDB0-201E0CCB94A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCD75AC3-DA5B-45B9-BDB0-201E0CCB94A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B14770-81FE-40A0-AD88-BB1359EFE47D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B14770-81FE-40A0-AD88-BB1359EFE47D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B14770-81FE-40A0-AD88-BB1359EFE47D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B14770-81FE-40A0-AD88-BB1359EFE47D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
