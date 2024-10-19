@@ -1,0 +1,76 @@
+﻿@page "/Login"
+
+@layout HeadlessLayout
+@inherits LoginPage
+
+<PageTitle> DockIQ - Entrar</PageTitle>
+@*
+Padding é interneo
+Margin é externo
+*@
+<MudGrid Justify="Justify.Center">
+    <MudItem xs="12" md="6" lg="4">
+        <MudPaper Class="mud-width-full pa-10" Elevation="5">
+            <div class="d-flex justify-center pt-8 pb-8">
+                <MudText Typo="Typo.h1" Class="custom-title">
+                    DockIQ
+                </MudText>
+
+                <style>
+                    .custom-title {
+                        font-size: 48px; /* Ajusta o tamanho da fonte */
+                        font-weight: bold; /* Define o texto como negrito */
+                        background: linear-gradient(45deg, #04415f, #69b3d8); /* Aplica o gradiente com as cores desejadas */
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent; /* Faz o gradiente aparecer dentro do texto */
+                        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Adiciona sombra ao texto */
+                        transition: transform 0.3s ease-in-out; /* Adiciona uma transição suave */
+                    }
+
+                    .custom-title:hover {
+                        transform: scale(1.05); /* Aumenta ligeiramente o tamanho ao passar o mouse */
+                    }
+                </style>
+            </div>
+            <EditForm Model="@InputModel" OnValidSubmit="@OnValidSubmitAsync">
+                <DataAnnotationsValidator/>
+                <MudTextField Variant="Variant.Outlined"
+                              Adornment="Adornment.End"
+                              AdornmentIcon="@Icons.Material.Filled.AlternateEmail"
+                              Color="Warning" 
+                T="string"
+                Label="e-mail"
+                HelperText="Campo obrigatório"
+                InputType="InputType.Email"
+                @bind-Value="@InputModel.Email"
+                For="@(() => InputModel.Email)"
+                />
+                <MudTextField Variant="Variant.Outlined"
+                              Adornment="Adornment.End"
+                              AdornmentIcon="@Icons.Material.Filled.Password"
+                              HelperText="Campo obrigatório"
+                              T="string"
+                              Label="Senha"
+                              InputType="InputType.Password"
+                              For="@(() => InputModel.Password)"
+                              @bind-Value="@InputModel.Password"
+                />
+                @if (IsBusy)
+                {
+                <MudProgressCircular Color="Color.Primary" Indeterminate="true"/>  <!-- Remova as aspas ao redor de Color.Info -->
+                }
+                else
+                {
+                <MudButton ButtonType="ButtonType.Submit"
+                           FullWidth="true"
+                           Variant="Variant.Filled"
+                           Color="Color.Primary">Entrar</MudButton> <!-- Remova as aspas ao redor de Color.Primary -->
+                }
+            </EditForm>
+            <MudButton Variant="Variant.Text" FullWidth="true">Esqueceu a sua senha?</MudButton>
+            <MudButton Variant="Variant.Text" FullWidth="true" Href="/registro">Registre-se</MudButton>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+

@@ -10,13 +10,13 @@ public class Response<TData>
     [JsonConstructor]
     public Response()
     {
-        _code = Configuration.DefoultStatusCode;
+        _code = Configuration.DefaultStatusCode;
         
     }
 
     public Response(
         TData data, 
-        int code = Configuration.DefoultStatusCode, 
+        int code = Configuration.DefaultStatusCode, 
         string? message = null)
     {
         Data = data;

@@ -1,0 +1,52 @@
+﻿@page "/sair"
+@inherits LogoutPage
+@layout HeadlessLayout
+
+<PageTitle>DockIQ - Sair</PageTitle>
+
+<MudGrid Justify="Justify.Center" AlignItems="AlignItems.Center" Style="height: 100vh;">
+    <MudItem xs="12"  md="8" lg="6">
+        <MudText Typo="Typo.h4" Align="Align.Center">Deslogando, por favor aguarde.</MudText>
+
+        <!-- Barra de Progresso -->
+        <MudProgressLinear Color="Color.Primary" Indeterminate="false" Max="100" Value="_progressValue" Style="width: 100%; margin-top: 20px;" />
+
+        <MudPaper Class="pa-8 mt-4" Style="text-align: center;">
+            <MudAlert Severity="Severity.Success" Style="text-align: center;">
+                <!-- Texto e botão centralizados -->
+                <div AlignItems="AlignItems.Center">
+                    <MudText Typo="Typo.subtitle1" Align="Align.Center" Class="mb-2">Sessão Finalizada!</MudText>
+                
+                </div>
+
+
+            </MudAlert>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       Href="/"
+                       Style="display: block; margin: 0 auto; width: 100%;">
+                IR PARA TELA DE LOGIN
+            </MudButton>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+@code {
+    private double _progressValue = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulando a animação de logout com uma duração de 1 segundo
+        int duration = 1000; // 1 segundo em milissegundos
+        int interval = 10; // Intervalo para atualização da barra
+        
+        for (int i = 0; i <= duration / interval; i++)
+        {
+            _progressValue = (i * 100) / (duration / interval);
+            await Task.Delay(interval); // Pausa para criar a animação
+        }
+        
+        // Após a animação, o valor atinge 100% e o processo de logout é considerado completo
+        _progressValue = 100;
+    }
+}

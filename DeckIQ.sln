@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckIQ.Api", "DeckIQ.Api\De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckIQ.Documents", "DeckIQ.Documents\DeckIQ.Documents.csproj", "{78B14770-81FE-40A0-AD88-BB1359EFE47D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeckIQ.Web", "DeckIQ.Web\DeckIQ.Web.csproj", "{B5C3FE3C-E263-408F-916F-C8E15A061159}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{78B14770-81FE-40A0-AD88-BB1359EFE47D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78B14770-81FE-40A0-AD88-BB1359EFE47D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78B14770-81FE-40A0-AD88-BB1359EFE47D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5C3FE3C-E263-408F-916F-C8E15A061159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5C3FE3C-E263-408F-916F-C8E15A061159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5C3FE3C-E263-408F-916F-C8E15A061159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5C3FE3C-E263-408F-916F-C8E15A061159}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

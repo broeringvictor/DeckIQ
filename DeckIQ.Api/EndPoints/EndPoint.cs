@@ -1,6 +1,8 @@
 ﻿using DeckIQ.Api.Common.Api;
 using DeckIQ.Api.EndPoints.Categories;
 using DeckIQ.Api.EndPoints.FlashCards;
+using DeckIQ.Api.EndPoints.Identity;
+using DeckIQ.Api.Models;
 
 namespace DeckIQ.Api.EndPoints;
 
@@ -32,7 +34,15 @@ public static class EndPoint
             .MapEndpoint<DeleteFlashCardEndpoint>()
             .MapEndpoint<GetFlashCardByIdEndpoint>()
             .MapEndpoint<GetFlashCardByPeriodEndpoint>();
-        
+
+        endpoints.MapGroup("v1/identity")
+            .WithTags("Identity")
+            .MapIdentityApi<User>();
+            
+        endpoints.MapGroup("v1/identity")
+            .WithTags("Identity")
+            .MapEndpoint<LogoutEndpoint>()
+            .MapEndpoint<GetRolesEndpoint>();
         
     }
 
