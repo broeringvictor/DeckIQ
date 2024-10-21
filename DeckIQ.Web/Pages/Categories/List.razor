@@ -1,0 +1,61 @@
+﻿@page "/categorias"
+@inherits ListCategoriesPage
+
+
+<MudText Typo="Typo.h3">Categorias</MudText>
+<div class="d-flex justify-end mb-4">
+    <MudButton
+        Variant="Variant.Filled"
+        Color="Color.Primary"
+        StartIcon="@Icons.Material.Filled.Add"
+        Href="/categorias/adicionar">
+        NOVA CATEGORIA
+    </MudButton>
+</div>
+
+<MudPaper Class="p-4">
+    <MudDataGrid
+        Class="mt-4"
+        Items="@Categories"
+        Filterable="true"
+        QuickFilter="Filter"
+        Hover="true"
+        Striped="true"
+        Elevation="1">
+        <ToolBarContent>
+            <MudTextField
+                @bind-Value="SearchTerm"
+                Placeholder="Filtrar..."
+                Adornment="Adornment.Start"
+                AdornmentIcon="@Icons.Material.Filled.Search"
+                Immediate="true"
+                IconSize="Size.Medium"
+                Class="mt-0">
+            </MudTextField>
+        </ToolBarContent>
+        <Columns>
+            <PropertyColumn Property="x => x.Id" Title="#" />
+            <PropertyColumn Property="x => x.Title" Title="Categoria" />
+            <PropertyColumn Property="x => x.Description" Title="Descrição" />
+
+            <TemplateColumn CellClass="d-flex justify-end">
+                <CellTemplate>
+                    <MudIconButton
+                        Icon="@Icons.Material.Filled.Edit"
+                        Color="Color.Primary"
+                        Href="@($"categorias/editar/{context.Item.Id}")"
+                        />
+                        
+                    <MudIconButton
+                        Icon="@Icons.Material.Filled.Delete"
+                        Color="Color.Error"
+                        aria-label="Excluir"
+                        OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Title)"/>
+
+                  
+                </CellTemplate>
+            </TemplateColumn>
+        </Columns>
+    </MudDataGrid>
+</MudPaper>
+

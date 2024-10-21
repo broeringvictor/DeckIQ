@@ -35,7 +35,7 @@ public class GetFlashCardByPeriodEndpoint : IEndPoint
         request.StartDate = startDate;
         request.EndDate = endDate;
 
-        var result = handler.GetByPeriod(request).Result; // Chama o método GetByPeriod do handler
+        var result = handler.GetByPeriodAsync(request).Result; // Chama o método GetByPeriod do handler
         return result.IsSuccess
             ? TypedResults.Ok(result)
             : TypedResults.BadRequest(result);

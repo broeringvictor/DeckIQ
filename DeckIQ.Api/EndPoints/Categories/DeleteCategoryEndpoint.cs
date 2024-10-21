@@ -20,7 +20,7 @@ public class DeleteCategoryEndpoint : IEndPoint
     private static async Task<IResult> HandleAsync(
         ClaimsPrincipal user,
         ICategoryHandler handler,
-        long id)
+        int id)
     {
         var request = new DeleteCategoryRequest
         {

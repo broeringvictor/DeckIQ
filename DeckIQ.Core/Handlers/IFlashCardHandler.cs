@@ -10,6 +10,8 @@ public interface IFlashCardHandler
     Task<Response<FlashCard?>> DeleteAsync(DeleteFlashCardRequest request);
     Task<Response<FlashCard?>> UpdateAsync(UpdateFlashCardRequest request);
     Task<Response<FlashCard?>> GetByIdAsync(GetFlashCardByIdRequest request);
-    Task<Response<List<FlashCard?>?>> GetByPeriod(GetFlashCardSByPeriodRequest request);
+    Task<PagedResponse<List<FlashCard>?>> GetByPeriodAsync(GetFlashCardSByPeriodRequest request);
+    
+    Task<Response<List<FlashCard>?>> GetRandomByCategoryAsync(GetRandomFlashCardsRequest request);
 
 }

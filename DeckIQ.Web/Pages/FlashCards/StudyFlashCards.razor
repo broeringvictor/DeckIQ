@@ -1,0 +1,84 @@
+﻿@page "/flashcards/estudar"
+@inherits StudyFlashCardsPage
+
+@using DeckIQ.Core.Models
+@using MudBlazor
+
+<MudText Typo="Typo.h4">Estudar Flashcards</MudText>
+
+<MudPaper Class="pa-4 mt-4">
+    <!-- Selecionar a categoria e quantidade de flashcards -->
+    <MudSelect T="int" Label="Categoria"
+               @bind-Value="SelectedCategoryId"
+               HelperText="Selecione uma categoria"
+               Dense="true" Required="true">
+        @if (Categories.Any())
+        {
+            @foreach (var category in Categories)
+            {
+                <MudSelectItem Value="category.Id">@category.Title</MudSelectItem>
+            }
+        }
+        else
+        {
+            <MudSelectItem Value="0">Nenhuma categoria disponível</MudSelectItem>
+        }
+    </MudSelect>
+
+    <MudNumericField T="int" Label="Quantidade de Flashcards"
+                     @bind-Value="Quantity"
+                     Min="1" Max="20"
+                     HelperText="Selecione a quantidade de flashcards"
+                     Class="mt-2" />
+
+    <!-- Botão para carregar flashcards -->
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-4"
+               OnClick="async () => await LoadFlashCardsAsync()">
+        Iniciar Estudo
+    </MudButton>
+</MudPaper>
+
+@if (FlashCards.Any())
+{
+    @foreach (var flashCard in FlashCards)
+    {
+        var state = FlashCardStates[flashCard.Id];
+
+        <MudPaper Class="pa-4 mt-4" Style="max-width: 600px;">
+            <MudCard>
+                <MudCardContent>
+                    <!-- Exibir a pergunta e imagem -->
+                    <MudText Typo="Typo.h5">@flashCard.Question</MudText>
+                    @if (!string.IsNullOrEmpty(flashCard.CardImage))
+                    {
+                        <MudCardMedia Image="@flashCard.CardImage" Height="200" />
+                    }
+
+                    <!-- Exibição das opções de resposta -->
+                    <MudRadioGroup @bind-Value="state.SelectedOption" T="string" Class="mt-4">
+                        @foreach (var option in state.Options)
+                        {
+                            <MudRadio T="string" Value="@option">@option</MudRadio>
+                        }
+                    </MudRadioGroup>
+
+                    <!-- Botão para verificar a resposta -->
+                    <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="(() => CheckAnswer(flashCard))" Class="mt-2">
+                        Verificar Resposta
+                    </MudButton>
+
+                    @if (state.IsCorrect.HasValue)
+                    {
+                        <MudText Color="@(state.IsCorrect.Value ? Color.Success : Color.Error)" Class="mt-2">
+                            @(state.IsCorrect.Value ? "Resposta Correta!" : "Resposta Incorreta.")
+                        </MudText>
+                    }
+                </MudCardContent>
+            </MudCard>
+        </MudPaper>
+    }
+}
+else
+{
+    <MudText> Nenhuma questão encontrada. </MudText>
+}

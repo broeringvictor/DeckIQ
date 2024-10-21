@@ -75,7 +75,7 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
             if (flashCard is null)
                 return new Response<FlashCard?>(null, 404, "Transação não encontrada");
 
-            flashCard.CategoryId = request.CategoryId;
+            flashCard.CategoryId = (int)request.CategoryId;
             flashCard.LastUpdateDate = DateTime.Now;
             flashCard.Question = request.Question;
             flashCard.Answer = request.Answer;
@@ -116,7 +116,7 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
         }
     }
 
-    public async Task<Response<List<FlashCard?>?>> GetByPeriod(GetFlashCardSByPeriodRequest request)
+    public async Task<PagedResponse<List<FlashCard>?>> GetByPeriodAsync(GetFlashCardSByPeriodRequest request)
     {
         try
         {
@@ -125,7 +125,7 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
         }
         catch
         {
-            return new PagedResponse<List<FlashCard?>?>(null, 500, "Não foi possível determinar a data de inicio ou final.");
+            return new PagedResponse<List<FlashCard>?>(null, 500, "Não foi possível determinar a data de inicio ou final.");
         }
 
         try
@@ -146,8 +146,8 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
         
             var count = await query.CountAsync();
         
-            return new PagedResponse<List<FlashCard?>?>(
-                flashCards!,
+            return new PagedResponse<List<FlashCard>?>(
+                flashCards,
                 count,
                 request.PageNumber,
                 request.PageSize);
@@ -155,8 +155,35 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
         }
         catch
         {
-            return new PagedResponse<List<FlashCard?>?>(null, 500, "Não foi possível obter os Flash Cards.");   
+            return new PagedResponse<List<FlashCard>?>(null, 500, "Não foi possível obter os Flash Cards.");   
         }
     }
+    public async Task<Response<List<FlashCard>?>> GetRandomByCategoryAsync(GetRandomFlashCardsRequest request)
+    {
+        if (request == null) throw new ArgumentNullException(nameof(request));
+        try
+        {
+            var query = context.FlashCards
+                .AsNoTracking()
+                .Where(x => x.CategoryId == request.CategoryId && x.UserId == request.UserId);
+
+            var totalFlashCards = await query.CountAsync();
+
+            if (totalFlashCards == 0)
+                return new Response<List<FlashCard>?>(null, 404, "Nenhum flashcard encontrado para esta categoria.");
+
+            var randomFlashCards = await query
+                .OrderBy(x => Guid.NewGuid()) // Ordena aleatoriamente
+                .Take(request.Quantity)
+                .ToListAsync();
+
+            return new Response<List<FlashCard>?>(randomFlashCards);
+        }
+        catch
+        {
+            return new Response<List<FlashCard>?>(null, 500, "Não foi possível obter os flashcards aleatórios.");
+        }
+    }
+
 }
    

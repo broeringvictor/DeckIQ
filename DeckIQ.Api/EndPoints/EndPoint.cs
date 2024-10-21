@@ -25,15 +25,18 @@ public static class EndPoint
             .MapEndpoint<DeleteCategoryEndpoint>()
             .MapEndpoint<GetCategoryByIdEndpoint>()
             .MapEndpoint<GetAllCategoriesEndpoint>();
-        
+
         endpoints.MapGroup("v1/flashcards")
             .WithTags("FlashCards")
             .RequireAuthorization()
             .MapEndpoint<CreateFlashCardEndpoint>()
             .MapEndpoint<UpdateFlashCardEndpoint>()
             .MapEndpoint<DeleteFlashCardEndpoint>()
-            .MapEndpoint<GetFlashCardByIdEndpoint>()
+            .MapEndpoint<GetRandomFlashCardsEndpoint>() // Coloque antes
+            .MapEndpoint<GetFlashCardByIdEndpoint>()    // Coloque depois
             .MapEndpoint<GetFlashCardByPeriodEndpoint>();
+
+
 
         endpoints.MapGroup("v1/identity")
             .WithTags("Identity")

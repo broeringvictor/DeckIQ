@@ -1,6 +1,14 @@
 ﻿ @inherits LayoutComponentBase
- <MudThemeProvider Theme ="@Configuration.ThemeHeadless"/>
- <MudSnackbarProvider/>
+     <!-- MainLayout.razor ou App.razor -->
+<MudThemeProvider Theme="@Configuration.ThemeHeadless" IsDarkMode="false" />
+
+ @* Needed for dialogs *@
+ <MudDialogProvider />
+
+ @* Needed for snackbars *@
+ <MudSnackbarProvider />
+
+ <MudPopoverProvider />
  
  
  

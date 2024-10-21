@@ -12,8 +12,7 @@ public class FlashCard
     public string? CardImage { get; set; } 
     public DateTime CreateDate { get; set; } = DateTime.Now;
     public DateTime LastUpdateDate { get; set; } = DateTime.Now;
-    public long CategoryId { get; set; }
+    public int CategoryId { get; set; } // Tipo 'int' para consistência
     public Category Category { get; set; } = null!;
     public string UserId { get; set; } = string.Empty;
-    
 }

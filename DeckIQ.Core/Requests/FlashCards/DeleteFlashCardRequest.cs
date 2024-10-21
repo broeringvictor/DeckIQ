@@ -2,5 +2,5 @@
 
 public class DeleteFlashCardRequest : Request
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
 }

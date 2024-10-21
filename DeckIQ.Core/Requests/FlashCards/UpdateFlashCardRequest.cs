@@ -28,7 +28,7 @@ public class UpdateFlashCardRequest : Request
     
     public string? CardImage { get; set; } 
     
-    public long CategoryId { get; set; }
+    public int CategoryId { get; set; }
     
 
 }

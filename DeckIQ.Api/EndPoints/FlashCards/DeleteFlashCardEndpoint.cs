@@ -21,7 +21,7 @@ public class DeleteFlashCardEndpoint : IEndPoint
     private static async Task<IResult> HandleAsync(
         ClaimsPrincipal user,
         IFlashCardHandler handler,
-        long id)
+        int id)
     {
         var request = new DeleteFlashCardRequest()
         {

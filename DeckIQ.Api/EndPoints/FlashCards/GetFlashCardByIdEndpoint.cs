@@ -10,7 +10,8 @@ namespace DeckIQ.Api.EndPoints.FlashCards;
 public class GetFlashCardByIdEndpoint : IEndPoint
 {
     public static void Map(IEndpointRouteBuilder app)
-        => app.MapGet("/{id}", HandleAsync)
+        => app.MapGet("/by-id/{id:long}", HandleAsync)
+
             .WithName("FlashCards: Get By Id")
             .WithSummary("Recupera um Flash Card")
             .WithDescription("Recupera um Flash Card")
@@ -20,7 +21,7 @@ public class GetFlashCardByIdEndpoint : IEndPoint
     private static async Task<IResult> HandleAsync(
         ClaimsPrincipal user,
         IFlashCardHandler handler,
-        long id)
+        int id)
     {
         var request = new GetFlashCardByIdRequest
         {

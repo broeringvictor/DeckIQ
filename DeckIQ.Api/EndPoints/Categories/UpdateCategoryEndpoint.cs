@@ -25,7 +25,7 @@ public class UpdateCategoryEndpoint : IEndPoint
     {
         
         request.UserId = user.Identity?.Name ?? string.Empty;
-        request.Id = id;
+        request.Id = (int)id;
         
         var result = await handler.UpdateAsync(request);
         return result.IsSuccess
