@@ -13,7 +13,8 @@
           "Microsoft.AspNetCore.OpenApi": "8.0.10",
           "Microsoft.EntityFrameworkCore.Design": "8.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.10",
-          "Swashbuckle.AspNetCore": "6.9.0"
+          "Swashbuckle.AspNetCore": "6.9.0",
+          "MudBlazor": "7.13.0.0"
         },
         "runtime": {
           "DeckIQ.Api.dll": {}
@@ -1010,6 +1011,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "MudBlazor/7.13.0.0": {
+        "runtime": {
+          "MudBlazor.dll": {
+            "assemblyVersion": "7.13.0.0",
+            "fileVersion": "7.13.0.0"
+          }
+        }
       }
     }
   },
@@ -1630,6 +1639,11 @@
     },
     "DeckIQ.Core/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MudBlazor/7.13.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

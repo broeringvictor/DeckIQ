@@ -14,6 +14,8 @@ namespace DeckIQ.Web.Pages.FlashCards
         public bool IsBusy { get; set; } = false;
         public List<FlashCard> FlashCards { get; set; } = new();
         public List<Category> Categories { get; set; } = new();
+        
+     
         public int SelectedCategoryId { get; set; } = 0;
         public int Quantity { get; set; } = 5;
 

@@ -149,3 +149,5 @@ C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\refint\DeckIQ.Api.dll
 C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\DeckIQ.Api.pdb
 C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\DeckIQ.Api.genruntimeconfig.cache
 C:\dev\dev\DeckIQ\DeckIQ.Api\obj\Debug\net8.0\ref\DeckIQ.Api.dll
+C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\MudBlazor.dll
+C:\dev\dev\DeckIQ\DeckIQ.Api\bin\Debug\net8.0\MudBlazor.xml

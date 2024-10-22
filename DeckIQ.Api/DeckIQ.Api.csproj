@@ -22,4 +22,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="MudBlazor">
+      <HintPath>..\..\..\..\packages\mudblazor\7.13.0\lib\net8.0\MudBlazor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -13,5 +13,6 @@ public interface IFlashCardHandler
     Task<PagedResponse<List<FlashCard>?>> GetByPeriodAsync(GetFlashCardSByPeriodRequest request);
     
     Task<Response<List<FlashCard>?>> GetRandomByCategoryAsync(GetRandomFlashCardsRequest request);
+    Task<PagedResponse<List<FlashCard>?>> GetAllAsync(GetAllFlashCardsRequest request);
 
 }

@@ -1,4 +1,5 @@
-﻿using DeckIQ.Core.Handlers;
+﻿using System.Diagnostics;
+using DeckIQ.Core.Handlers;
 using DeckIQ.Core.Models;
 using DeckIQ.Core.Requests.Categories;
 using Microsoft.AspNetCore.Components;
@@ -106,6 +107,7 @@ public partial class ListCategoriesPage : ComponentBase
         if (category.Id.ToString().Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
             return true;
 
+        Debug.Assert(category.Title != null, "category.Title != null");
         if (category.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
             return true;
 

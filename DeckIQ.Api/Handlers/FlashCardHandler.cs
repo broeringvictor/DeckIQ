@@ -2,6 +2,7 @@
 using DeckIQ.Core.Common.Extensions;
 using DeckIQ.Core.Handlers;
 using DeckIQ.Core.Models;
+using DeckIQ.Core.Requests.Categories;
 using DeckIQ.Core.Requests.FlashCards;
 using DeckIQ.Core.Responses;
 using Microsoft.EntityFrameworkCore;
@@ -182,6 +183,45 @@ public class FlashCardHandler(AppDbContext context) : IFlashCardHandler
         catch
         {
             return new Response<List<FlashCard>?>(null, 500, "Não foi possível obter os flashcards aleatórios.");
+        }
+    }
+
+    public async Task<PagedResponse<List<FlashCard>?>> GetAllAsync(GetAllFlashCardsRequest request)
+    {
+        if (request == null) 
+            throw new ArgumentNullException(nameof(request));
+    
+        try
+        {
+            // Consultando FlashCards da categoria específica do usuário
+            var query = context
+                .FlashCards
+                .AsNoTracking()
+                .Where(f => f.CategoryId == request.CategoryId && f.UserId == request.UserId) // Filtra por categoria e usuário
+                .OrderBy(f => f.Question); // Supondo que você queira ordenar pela pergunta do FlashCard
+        
+            // Paginação
+            var flashCards = await query
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToListAsync();
+
+            var count = await query.CountAsync();
+
+            // Verifica se existem FlashCards
+            if (count == 0)
+                return new PagedResponse<List<FlashCard>?>(null, 404, "Nenhum flashcard encontrado para esta categoria.");
+        
+            return new PagedResponse<List<FlashCard>?>(
+                flashCards,
+                count,
+                request.PageNumber,
+                request.PageSize
+            );
+        }
+        catch
+        {
+            return new PagedResponse<List<FlashCard>?>(null, 500, "Não foi possível consultar os FlashCards.");
         }
     }
 

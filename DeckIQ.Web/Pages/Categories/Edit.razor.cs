@@ -17,7 +17,7 @@ public partial class EditCategoryPage : ComponentBase
     #region Parameters
 
     [Parameter]
-    public int Id { get; set; } = Convert.ToInt32(string.Empty);
+    public int Id { get; set; }
 
     #endregion
 

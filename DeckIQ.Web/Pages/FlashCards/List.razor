@@ -1,0 +1,144 @@
+﻿@page "/flashcards"
+@inherits ListFlashCardPage
+
+<MudGrid>
+    <MudText Typo="Typo.h3" Class="pa-8">FlashCards</MudText>
+
+    <!-- Seleção de Categoria -->
+    <MudPaper Class="d-flex flex-column mud-width-full" ma-8>
+        <!-- Selecionar a categoria e quantidade de flashcards -->
+        <MudItem Class="pl-8 pt-8 pr-8">
+            <MudSelect T="int" Label="Categoria"
+                       @bind-Value="SelectedCategoryId"
+                       HelperText="Selecione uma categoria"
+                       Dense="true" Required="true">
+                @if (Categories.Any())
+                {
+                @foreach (var category in Categories)
+                {
+                <MudSelectItem Value="category.Id">@category.Title</MudSelectItem>
+                }
+                }
+                else
+                {
+                <MudSelectItem Value="0">Nenhuma categoria disponível</MudSelectItem>
+                }
+            </MudSelect>
+        </MudItem>
+
+        <!-- Botão embaixo do select -->
+        <MudItem Class="pl-8 pr-8 pb-8">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                       OnClick="async () => await LoadFlashCardsAsync()">
+                Buscar
+            </MudButton>
+        </MudItem>
+    </MudPaper>
+
+    <div class="d-flex justify-end mt-4 mb-4">
+        <MudButton
+            Variant="Variant.Filled"
+            Color="Color.Primary"
+            StartIcon="@Icons.Material.Filled.Add"
+            Href="/flashcards/criar">
+            FlashCard
+        </MudButton>
+    </div>
+
+    <MudPaper Class="d-flex flex-column mud-width-full" ma-8>
+        <MudDataGrid
+            Class="pa-8 mud-width-full"
+            Items="@FlashCards"
+            Filterable="true"
+            QuickFilter="Filter"
+            Hover="true"
+            Striped="true"
+            Bordered="false"
+            FixedHeader="false"
+            FixedFooter="false"
+            Hideable="false"
+            ShowColumnOptions="false"
+            DragDropColumnReordering="false"
+            ColumnsPanelReordering="false"
+            Elevation="1">
+            <ToolBarContent>
+                <MudTextField
+                    @bind-Value="SearchTerm"
+                    Placeholder="Filtrar..."
+                    Adornment="Adornment.Start"
+                    AdornmentIcon="@Icons.Material.Filled.Search"
+                    Immediate="true"
+                    IconSize="Size.Medium"
+                    Class="mt-0">
+                </MudTextField>
+            </ToolBarContent>
+            <Columns>
+                <PropertyColumn Property="x => x.Question" Title="Questão"/>
+                <PropertyColumn Property="x => x.Answer" Title="Resposta"/>
+
+                <!-- Coluna de Imagem -->
+                <TemplateColumn Title="Imagem" CellClass="d-flex align-center justify-center">
+                    <CellTemplate Context="context">
+                        @if (!string.IsNullOrWhiteSpace(context.Item.CardImage))
+                        {
+                        <MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="@(() => OpenDialog(context.Item.CardImage))">
+                            Ver Imagem
+                        </MudButton>
+                        }
+                        else
+                        {
+                        <span>Sem imagem</span>
+                        }
+                    </CellTemplate>
+                </TemplateColumn>
+
+                <PropertyColumn Property="x => x.CreateDate" Title="Criação"/>
+                <PropertyColumn Property="x => x.LastUpdateDate" Title="Editado"/>
+
+                <TemplateColumn CellClass="d-flex justify-end">
+                    <CellTemplate>
+                        <MudIconButton
+                            Icon="@Icons.Material.Filled.Edit"
+                            Color="Color.Primary"
+                            Href="@($"flashcards/editar/{context.Item.Id}")"/>
+                        <MudIconButton
+                            Icon="@Icons.Material.Filled.Delete"
+                            Color="Color.Error"
+                            aria-label="Excluir"
+                            OnClick="() => OnDeleteButtonClickedAsync(context.Item.Id, context.Item.Question)"/>
+                    </CellTemplate>
+                </TemplateColumn>
+            </Columns>
+        </MudDataGrid>
+    </MudPaper>
+
+    <!-- Dialog para exibir a imagem -->
+    <MudDialog @bind-Visible="_dialogVisible" MaxWidth="MaxWidth.Medium">
+        <DialogContent>
+            <MudImage Src="@_currentImageUrl" Alt="Imagem" Width="400" Height="300" Class="my-auto mx-auto"/>
+        </DialogContent>
+        <DialogActions>
+            <MudButton Color="Color.Primary" OnClick="CloseDialog">Fechar</MudButton>
+        </DialogActions>
+    </MudDialog>
+
+</MudGrid>
+
+@code {
+private bool _dialogVisible;
+private string? _currentImageUrl;
+
+// Função para abrir o dialog e mostrar a imagem
+private void OpenDialog(string imageUrl)
+{
+_currentImageUrl = imageUrl;
+_dialogVisible = true;
+}
+
+// Função para fechar o dialog
+private void CloseDialog()
+{
+_dialogVisible = false;
+_currentImageUrl = null;
+}
+}

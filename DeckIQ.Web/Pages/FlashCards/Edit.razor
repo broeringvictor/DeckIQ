@@ -1,0 +1,111 @@
+﻿@page "/flashcards/editar/{Id:int}"
+@inherits EditFlashCardPage
+
+@using DeckIQ.Core.Models
+@using MudBlazor
+
+<MudText Typo="Typo.h3">Editar Flashcard</MudText>
+
+@if (IsBusy)
+{
+<MudProgressCircular Class="m-auto" />
+}
+else
+{
+<MudPaper Class="pa-8 mt-4">
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        <DataAnnotationsValidator />
+
+        <!-- Campo da Questão -->
+        <MudTextField Label="Questão"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.Question"
+                      For="@(() => InputModel.Question)" />
+
+        <!-- Campo da Resposta -->
+        <MudTextField Label="Resposta"
+                      Lines="5"
+                      HelperText="Campo obrigatório"
+                      @bind-Value="InputModel.Answer"
+                      For="@(() => InputModel.Answer)" />
+
+        <!-- Campo de Imagem Opcional -->
+        <MudTextField Label="Imagem"
+                      HelperText="[URL da imagem] Opcional"
+                      @bind-Value="InputModel.CardImage"
+                      For="@(() => InputModel.CardImage)" />
+
+        <!-- Campo de Categoria com MudSelect -->
+        <MudSelect T="int" Label="Categoria"
+                   HelperText="Selecione uma categoria"
+                   @bind-Value="InputModel.CategoryId"
+                   For="@(() => InputModel.CategoryId)"
+                   Dense="true"
+                   Required="true">
+            @if (CategoryList.Any())
+            {
+            @foreach (var category in CategoryList)
+            {
+            <MudSelectItem Value="category.Id">@category.Title</MudSelectItem>
+            }
+            }
+            else
+            {
+            <MudSelectItem Value="0">Nenhuma categoria disponível</MudSelectItem>
+            }
+        </MudSelect>
+
+        <!-- Respostas Incorretas Opcionais -->
+        <MudExpansionPanels MultiExpansion="true" Class="mt-4">
+            <MudExpansionPanel Text="Editar Respostas Incorretas (Opcional)">
+                <MudGrid>
+                    <MudItem xs="12" sm="6">
+                        <MudTextField Label="Resposta Incorreta 01"
+                                      Lines="3"
+                                      HelperText="Opcional"
+                                      @bind-Value="InputModel.IncorrectAnswerA"
+                                      For="@(() => InputModel.IncorrectAnswerA)"
+                                      Adornment="Adornment.Start"
+                                      AdornmentIcon="@Icons.Material.Filled.Close" />
+                    </MudItem>
+                    <MudItem xs="12" sm="6">
+                        <MudTextField Label="Resposta Incorreta 02"
+                                      Lines="3"
+                                      HelperText="Opcional"
+                                      @bind-Value="InputModel.IncorrectAnswerB"
+                                      For="@(() => InputModel.IncorrectAnswerB)"
+                                      Adornment="Adornment.Start"
+                                      AdornmentIcon="@Icons.Material.Filled.Close" />
+                    </MudItem>
+                    <MudItem xs="12" sm="6">
+                        <MudTextField Label="Resposta Incorreta 03"
+                                      Lines="3"
+                                      HelperText="Opcional"
+                                      @bind-Value="InputModel.IncorrectAnswerC"
+                                      For="@(() => InputModel.IncorrectAnswerC)"
+                                      Adornment="Adornment.Start"
+                                      AdornmentIcon="@Icons.Material.Filled.Close" />
+                    </MudItem>
+                    <MudItem xs="12" sm="6">
+                        <MudTextField Label="Resposta Incorreta 04"
+                                      Lines="3"
+                                      HelperText="Opcional"
+                                      @bind-Value="InputModel.IncorrectAnswerD"
+                                      For="@(() => InputModel.IncorrectAnswerD)"
+                                      Adornment="Adornment.Start"
+                                      AdornmentIcon="@Icons.Material.Filled.Close" />
+                    </MudItem>
+                </MudGrid>
+            </MudExpansionPanel>
+        </MudExpansionPanels>
+
+        <!-- Botão de Salvar -->
+        <MudButton ButtonType="ButtonType.Submit"
+                   Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   Class="mt-4">
+            Salvar
+        </MudButton>
+    </EditForm>
+</MudPaper>
+}

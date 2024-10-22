@@ -34,7 +34,8 @@ public static class EndPoint
             .MapEndpoint<DeleteFlashCardEndpoint>()
             .MapEndpoint<GetRandomFlashCardsEndpoint>() // Coloque antes
             .MapEndpoint<GetFlashCardByIdEndpoint>()    // Coloque depois
-            .MapEndpoint<GetFlashCardByPeriodEndpoint>();
+            .MapEndpoint<GetFlashCardByPeriodEndpoint>()
+            .MapEndpoint<GetAllFlashCardsEndpoint>();
 
 
 
