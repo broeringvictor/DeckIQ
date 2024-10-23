@@ -40,7 +40,7 @@
 
 @if (FlashCards.Any())
 {
-<MudPaper Class="pa-4 mt-4" Style="width: 800px;">
+<MudPaper Class="d-fle pa-4 mt-4 x align-center justify-center">
     <MudStepper @bind-ActiveIndex="ActiveStepIndex" Elevation="4">
         @foreach (var flashCard in FlashCards)
         {
@@ -57,6 +57,10 @@
                     {
                         <MudCardMedia Image="@flashCard.CardImage" Height="200" />
                     }
+
+                    
+                    
+
 
                     <!-- Exibição das opções de resposta -->
                     <MudRadioGroup @bind-Value="state.SelectedOption" T="string" Class="mt-4">
@@ -117,4 +121,11 @@ ActiveStepIndex--;
 
 public bool CanGoToPreviousStep() => ActiveStepIndex > 0;
 public bool CanGoToNextStep() => ActiveStepIndex < FlashCards.Count - 1;
+}
+@code {
+    bool _expanded = true;
+
+    private void OnExpandCollapseClick() {
+        _expanded = !_expanded;
+    }
 }

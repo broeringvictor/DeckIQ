@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DeckIQ.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dca5a25646ac639b7be0d8352dc583db106f0923")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e576f05f0c3d9f0c6e60bb73311a2080f48c25c0")]
 [assembly: System.Reflection.AssemblyProductAttribute("DeckIQ.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DeckIQ.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

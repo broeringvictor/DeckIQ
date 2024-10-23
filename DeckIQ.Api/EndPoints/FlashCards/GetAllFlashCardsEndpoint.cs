@@ -6,6 +6,7 @@ using DeckIQ.Core.Models;
 using DeckIQ.Core.Requests.FlashCards;
 using DeckIQ.Core.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Configuration = DeckIQ.Core.Configuration;
 
 namespace DeckIQ.Api.EndPoints.FlashCards;
 

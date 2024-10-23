@@ -2,6 +2,7 @@
 using DeckIQ.Api.EndPoints.Categories;
 using DeckIQ.Api.EndPoints.FlashCards;
 using DeckIQ.Api.EndPoints.Identity;
+using DeckIQ.Api.EndPoints.OpenAi;
 using DeckIQ.Api.Models;
 
 namespace DeckIQ.Api.EndPoints;
@@ -47,7 +48,12 @@ public static class EndPoint
             .WithTags("Identity")
             .MapEndpoint<LogoutEndpoint>()
             .MapEndpoint<GetRolesEndpoint>();
-        
+
+        endpoints.MapGroup("v1/openai")
+            .WithTags("OpenIa")
+            .RequireAuthorization()
+            .MapEndpoint<CreateOpenAiFlashCardEndpoint>();
+
     }
 
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)

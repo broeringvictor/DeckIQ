@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using DeckIQ.Api.Models;
 using DeckIQ.Core.Models;
+using DeckIQ.Core.Models.OpenIa;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options)
 {
     public DbSet<Category> Categories { get; set; } = null!;
     public DbSet<FlashCard> FlashCards { get; set; } = null!;
+    
+    public DbSet<OpenIaFlashCard> OpenAiFlashCards { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

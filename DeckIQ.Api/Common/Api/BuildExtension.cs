@@ -10,16 +10,12 @@ namespace DeckIQ.Api.Common.Api;
 
 public static class BuildExtension
 {
-    public static void AddConfiguration(
-        this WebApplicationBuilder builder)
+    public static void AddConfiguration(this WebApplicationBuilder builder)
     {
-        Configuration.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;;
+        Configuration.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
         Configuration.BackendUrl = builder.Configuration.GetValue<string>("BackendUrl") ?? string.Empty;
         Configuration.FrontendUrl = builder.Configuration.GetValue<string>("FrontendUrl") ?? string.Empty;
-        
-       // ApiConfiguration.StripeApiKey = builder.Configuration.GetValue<string>("StripeApiKey") ?? string.Empty;
-
-        //StripeConfiguration.ApiKey = ApiConfiguration.StripeApiKey;
+        Configuration.OpenAi = builder.Configuration.GetValue<string>("OpenAI:ApiKey") ?? string.Empty;
     }
 
     public static void AddDocs
@@ -69,10 +65,13 @@ public static class BuildExtension
             });
         });
     }
+
     public static void AddServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
         builder.Services.AddTransient<IFlashCardHandler, FlashCardHandler>();
+        builder.Services.AddTransient<IOpenAiHandler, OpenAiHandler>();
+        
+
     }
-    
 }
