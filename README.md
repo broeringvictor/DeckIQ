@@ -1,20 +1,31 @@
 # DeckIQ
 
-1. **Objetivo:** O DeckIQ é um aplicativo de flashcards voltado para uso pessoal, permitindo revisar e aprender de forma eficiente.
+## 1. Objetivo  
+DeckIQ é um aplicativo de flashcards projetado para uso pessoal, focado em oferecer uma maneira eficiente de revisar e aprender. O diferencial é a capacidade de integrar com a API da OpenAI: você insere uma questão e a resposta correta, e o sistema gera automaticamente quatro respostas incorretas. Durante o estudo, as questões são embaralhadas por conteúdo, e as opções de resposta são sorteadas, garantindo uma experiência dinâmica e evitando padrões previsíveis.
 
-2. **Decisão de Front-end:** Ainda estou avaliando se a renderização será feita no servidor ou diretamente no navegador.
+## 2. Estrutura do Projeto  
+O projeto está dividido em três principais componentes:
 
-3. **Desenvolvimento:** Estou desenvolvendo este aplicativo para aplicar os conhecimentos adquiridos no curso da [Balta](https://balta.io/).
+- **DeckIQ.Api:** Responsável por tudo que roda no servidor e manipula dados sensíveis.
+  - Configurações necessárias:
+    - ConnectionString para um banco MySQL.
+    - API Key da OpenAI.
+    - Escolha entre HTTPS ou HTTP (por padrão, o sistema está configurado para HTTPS).
+  
+- **DeckIQ.Core:** Atua como intermediário entre o front-end e o back-end.
 
-4. **Banco de Dados:** O aplicativo utiliza um banco de dados SQL Server.
+- **DeckIQ.Web:** Aplicação Web Assembly.
 
-5. **Migrations e Banco de Dados:**
-   - Para configurar o banco, basta rodar os comandos:
-     ```bash
-     dotnet ef migrations add v1
-     dotnet ef database update
-     ```
+## 3. Desenvolvimento  
+Este projeto é uma aplicação prática dos conhecimentos adquiridos no curso da [Balta](https://balta.io/).
 
-6. **String de Conexão:** Lembre-se de inicializar as secrets do projeto para proteger a string de conexão com o banco SQL Server, executando:
-   ```bash
-   dotnet user-secrets init
+## 4. Banco de Dados  
+DeckIQ utiliza um banco de dados SQL Server para armazenar todas as informações do usuário e flashcards.
+
+## 5. Configuração do Banco de Dados e Migrations  
+Para configurar o banco de dados e aplicar as migrations, execute os seguintes comandos:
+
+````
+dotnet ef migrations add v1
+dotnet ef database update
+````
